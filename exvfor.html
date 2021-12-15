@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World - Vue.js</title>
+        <script type="text/javascript" src ="js/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <ol>
+                <li v-for="l in linguagens">
+                    {{ l.text}}
+                </li>
+            </ol>
+        </div>
+
+        <script type="text/javascript">
+            new Vue({
+                el: "#app",
+                data: {
+                    linguagens: [
+                        {text: 'Javascript'},
+                        {text: 'PHP'},
+                        {text: 'Vue'},
+                    ]
+                }
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World - Vue.js</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <style type="text/css">
+            span.red {
+               color: red;
+               font-weight: bold;
+           }
+           </style>
+    </head>
+    <body>
+        <div id="app">
+            Nombre de caractères restants : <span v-bind:class="{ red: nbCaracteresRestants <= 0 }">{{nbCaracteresRestants}}</span>
+            <br>
+            <br>
+            <input v-model="message" class="form-control">
+        </div>
+        <script type="text/javascript">
+            new Vue({
+                el: "#app",
+                data: {
+                    nbCaracteresMax: 10,
+                    message: ""
+                },
+                computed: {
+                    nbCaracteresRestants: function () {
+                        return this.nbCaracteresMax - this.message.length;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
