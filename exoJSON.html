@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World - Vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="appT"></div>
+
+
+    <script type="text/javascript">
+        const appT = new Vue({
+            el: "#appT",
+            data: {
+                datasJson: [],
+                regions:[],
+                departements:[]
+            },
+
+
+
+
+            async created() {
+                //const map = new Map();
+
+                const request = await fetch("https://static.data.gouv.fr/resources/departements-et-leurs-regions/20190815-175403/departements-region.json")
+                this.datasJson = await request.json()
+
+                
+                for (let message of this.datasJson) {
+                    if (! this.regions.includes(message.region_name)) {
+                        this.regions.push(message.region_name)
+                    }
+                    if (! this.departements.includes(message.dep_name)) {
+                        this.departements.push(message.dep_name)
+                    }
+                    console.log(this.regions)
+                }
+            },
+
+
+
+
+
+
+
+
+            template:
+                `<div>
+                    <p> Les régions :</p>
+                    <ul>
+                        <li v-for="region in regions"><b>{{region}}</b></li>
+                    </ul>
+                    <p> Les départements :</p>
+                    <ul>
+                        <li v-for="departement in departements"><b>{{departement}}</b></li>
+                    </ul>
+                </div>
+                `
+        })
+
+    </script>
+</body>
+
+</html>

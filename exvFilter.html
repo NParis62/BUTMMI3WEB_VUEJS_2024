@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World - Vue.js</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message | maTransformation}}
+        <!-- {{monMessageTransforme}}-->
+        <br>
+        <input v-model="message" class="form-control">
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: "#app",
+            data: {
+                message: ""
+            },
+            filters: {
+                maTransformation: function (value) {
+                    if (!value) return ''
+                    return value.split("").map(x=>(x=='a'||x=='e'||x=='i'||x=='o'||x=='u'||x=='y')?x.toUpperCase():x).reverse().join("_");
+                }
+            }
+            /*
+            ,
+            computed: {
+                monMessageTransforme() {
+                    if (!this.message) return ''
+                    return this.message.split("").map(x=>(x=='a'||x=='e'||x=='i'||x=='o'||x=='u'||x=='y')?x.toUpperCase():x).reverse().join("_");
+                }
+            }
+            */
+        });
+    </script>
+</body>
+
+</html>
